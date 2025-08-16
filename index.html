@@ -1,41 +1,208 @@
-<form onsubmit="sendToWhatsApp(event)">
-  <label>Nama Lengkap</label>
-  <input type="text" id="nama" placeholder="Masukkan nama anda" required><br><br>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>SA TRANS Tour & Travel - Rental & Travel Mobil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #004aad;
+      color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-  <label>Pilih Mobil</label>
-  <select id="mobil">
-    <option>Hiace Commuter 14 Seat</option>
-    <option>Hiace Premio 14 Seat</option>
-    <option>Elf Short 15 Seat</option>
-    <option>Elf Long 19 Seat</option>
-  </select><br><br>
+    /* SLIDER */
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 400%; /* 4 slide */
+    }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      padding: 120px 30px 30px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    .slide:nth-child(odd) {
+      background: #fff;
+    }
+    .slide:nth-child(even) {
+      background: #f0f0f0;
+    }
 
-  <label>Tanggal Sewa</label>
-  <input type="date" id="tanggal" required><br><br>
+    h2 {
+      color: #004aad;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #ddd;
+    }
+    form {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    input, select, button {
+      margin-top: 8px;
+      padding: 8px;
+      width: 100%;
+    }
+    button {
+      background: #004aad;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #004aad;
+      color: white;
+      margin-top: 30px;
+    }
+    .wa-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .wa-button:hover {
+      background: #1ebe5c;
+    }
+  </style>
+</head>
+<body>
 
-  <label>Lama Sewa (Hari)</label>
-  <input type="number" id="lama" placeholder="Lama sewa (hari)" required><br><br>
+  <!-- HEADER -->
+  <header>
+    <h1>SA TRANS Tour & Travel</h1>
+    <nav>
+      <a onclick="goToSlide(0)">Home</a>
+      <a onclick="goToSlide(1)">Harga</a>
+      <a onclick="goToSlide(2)">Order</a>
+      <a onclick="goToSlide(3)">Jadwal</a>
+    </nav>
+  </header>
 
-  <button type="submit" style="background:#004aad; color:white; padding:10px 20px; border:none; cursor:pointer;">
-    Pesan Sekarang
-  </button>
-</form>
+  <!-- SLIDER -->
+  <div class="slider" id="slider">
 
-<script>
-function sendToWhatsApp(event) {
-  event.preventDefault();
-  let nama = document.getElementById("nama").value;
-  let mobil = document.getElementById("mobil").value;
-  let tanggal = document.getElementById("tanggal").value;
-  let lama = document.getElementById("lama").value;
+    <!-- SLIDE 1 -->
+    <section class="slide">
+      <h2>Selamat Datang di SA TRANS Tour & Travel</h2>
+      <p>Kami menyediakan layanan rental & travel mobil dengan harga terjangkau, armada terawat, serta pelayanan profesional.</p>
+    </section>
 
-  let pesan = `Halo Admin SA TRANS,%0A%0ASaya ingin memesan dengan detail:%0A%0A` +
-              `Nama: ${nama}%0A` +
-              `Mobil: ${mobil}%0A` +
-              `Tanggal Sewa: ${tanggal}%0A` +
-              `Lama Sewa: ${lama} hari%0A%0ATerima kasih.`;
+    <!-- SLIDE 2 -->
+    <section class="slide">
+      <h2>Harga Sewa Mobil</h2>
+      <table>
+        <tr>
+          <th>Jenis Mobil</th>
+          <th>Harga / Hari</th>
+        </tr>
+        <tr>
+          <td>Hiace Commuter 14 Seat</td>
+          <td>Rp 1.100.000 - Rp 5.000.000 (sesuai tujuan)</td>
+        </tr>
+        <tr>
+          <td>Hiace Premio 14 Seat Standard</td>
+          <td>Rp 1.300.000 - Rp 6.000.000</td>
+        </tr>
+        <tr>
+          <td>Hiace Premio 14 Seat Executive</td>
+          <td>Rp 1.500.000 - Rp 6.600.000</td>
+        </tr>
+        <tr>
+          <td>Elf 19 Seat Executive</td>
+          <td>Rp 1.300.000 - Rp 6.500.000</td>
+        </tr>
+      </table>
+    </section>
 
-  let url = "https://wa.me/6285210450728?text=" + pesan;
-  window.open(url, "_blank");
-}
-</script>
+    <!-- SLIDE 3 -->
+    <section class="slide">
+      <h2>Cara Order</h2>
+      <form>
+        <label>Nama Lengkap</label>
+        <input type="text" placeholder="Masukkan nama anda" required>
+
+        <label>Pilih Mobil</label>
+        <select>
+          <option>Hiace Commuter 14 Seat</option>
+          <option>Hiace Premio 14 Seat Standard</option>
+          <option>Hiace Premio 14 Seat Executive</option>
+          <option>Elf 19 Seat Executive</option>
+        </select>
+
+        <label>Tanggal Sewa</label>
+        <input type="date" required>
+
+        <label>Lama Sewa (Hari)</label>
+        <input type="number" min="1" max="30" required>
+
+        <button type="submit">Pesan Sekarang</button>
+      </form>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide">
+      <h2>Jadwal Mobil Bulanan</h2>
+      <p>[ Kalender bisa ditempatkan di sini seperti script Anda sebelumnya ]</p>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Alamat:</strong> KP Sarongge RT 03 RW 010, Desa Sindang Asih, Kecamatan Sindang Jaya, Kabupaten Tangerang, Banten</p>
+    <p><strong>Telp/WA:</strong> 085210450728</p>
+    <a class="wa-button" href="https://wa.me/6285210450728" target="_blank">💬 Hubungi via WhatsApp</a>
+    <p>&copy; 2025 SA TRANS Tour & Travel</p>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    function goToSlide(n) {
+      const slider = document.getElementById("slider");
+      currentSlide = n;
+      slider.style.transform = `translateX(-${n * 100}vw)`;
+    }
+  </script>
+
+</body>
+</html>
