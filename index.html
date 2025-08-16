@@ -2,180 +2,174 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>SA TRANS Tour & Travel</title>
+  <title>SA TRANS Tour & Travel - Rental & Travel Mobil</title>
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f7f7f7;}
-    header { background:#004aad; color:white; padding:20px; text-align:center;}
-    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold;}
-    section { max-width:1000px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.1);}
-    h2 { color:#004aad; }
-    .slide { display:none; }
-    .active { display:block; }
-    button, input, select { padding:8px; margin:5px 0; width:100%;}
-    button { background:#004aad; color:white; border:none; cursor:pointer;}
-    .calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-top:20px;}
-    .day { padding:8px; border-radius:4px; text-align:center; cursor:pointer; min-height:70px; font-size:12px; position:relative;}
-    .day .purpose { font-size:10px; margin-top:2px; display:block; word-wrap:break-word; }
-    .empty { background:#eee; cursor:default;}
-    .calendar-header { display:flex; justify-content:space-between; align-items:center; margin:10px 0;}
-    .legend { display:flex; gap:20px; margin-top:10px; flex-wrap:wrap;}
-    .legend-item { display:flex; align-items:center; gap:5px;}
-    .legend-color { width:20px; height:20px; border-radius:4px; display:inline-block;}
-    footer { text-align:center; padding:20px; background:#004aad; color:white; margin-top:30px;}
-    .wa-button { display:inline-block; margin-top:10px; padding:10px 20px; background:#25D366; color:white; border-radius:5px; text-decoration:none; font-weight:bold;}
-    .tag { width:10px; height:10px; border-radius:50%; display:inline-block; margin:1px;}
+    body {font-family: Arial, sans-serif;margin:0;padding:0;background:#f7f7f7;}
+    header {text-align:center;padding:20px;background:#004aad;color:white;}
+    nav a {color:white;margin:0 15px;text-decoration:none;font-weight:bold;cursor:pointer;}
+    section {display:none;padding:30px;margin:20px auto;max-width:1000px;background:white;
+             border-radius:10px;box-shadow:0 3px 6px rgba(0,0,0,0.1);}
+    section.active {display:block;}
+    h2 {color:#004aad;}
+    table {border-collapse:collapse;width:100%;margin-top:15px;}
+    th,td {border:1px solid #333;padding:8px;text-align:center;}
+    th {background:#ddd;}
+    form {background:#f9f9f9;padding:20px;border-radius:8px;}
+    input,select,button {margin-top:8px;padding:8px;width:100%;}
+    button {background:#004aad;color:white;border:none;cursor:pointer;}
+    .calendar {display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:20px 0;}
+    .day {border:1px solid #ccc;padding:8px;border-radius:4px;min-height:60px;font-size:12px;position:relative;}
+    .booked {color:white;}
+    .purpose {display:block;font-size:10px;margin-top:3px;}
+    .calendar-header {display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+    .legend {display:flex;gap:20px;flex-wrap:wrap;margin-top:10px;}
+    .legend-item {display:flex;align-items:center;gap:5px;}
+    .legend-color {width:20px;height:20px;border-radius:4px;display:inline-block;}
+    footer {text-align:center;padding:20px;background:#004aad;color:white;margin-top:30px;}
+    .wa-button {display:inline-block;margin-top:10px;padding:10px 20px;background:#25D366;color:white;
+                font-weight:bold;border-radius:5px;text-decoration:none;}
+    .terms {margin-top:20px;background:#f9f9f9;padding:15px;border-radius:8px;line-height:1.6;}
+    .terms h3 {margin-top:15px;color:#004aad;}
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <h1>SA TRANS Tour & Travel</h1>
     <h3>Rental & Travel Mobil</h3>
     <nav>
-      <a href="#" onclick="showSlide(0)">Home</a>
-      <a href="#" onclick="showSlide(1)">Pemesanan</a>
+      <a onclick="showSlide('home')">Home</a>
+      <a onclick="showSlide('order')">Pemesanan</a>
+      <a onclick="showSlide('jadwal')">Jadwal Mobil</a>
     </nav>
   </header>
 
-  <!-- SLIDE 1 (HOME) -->
-  <div class="slide active" id="slide1">
-    <section>
-      <h2>Selamat Datang di SA TRANS</h2>
-      <p>Kami menyediakan layanan rental & travel mobil dengan harga terjangkau, armada terawat, serta pelayanan profesional.</p>
-    </section>
+  <!-- HOME -->
+  <section id="home" class="active">
+    <h2>Selamat Datang di SA TRANS Tour & Travel</h2>
+    <p>Kami menyediakan layanan rental & travel mobil dengan harga terjangkau, armada terawat, serta pelayanan profesional.</p>
 
-    <section>
-      <h2>Harga Sewa Mobil</h2>
-      <table border="1" width="100%" cellspacing="0" cellpadding="8">
-        <tr><th>Jenis Mobil</th><th>Harga / Hari</th></tr>
-        <tr><td>Hiace Commuter 14 Seat</td><td>Rp 1.100.000 - Rp 5.000.000</td></tr>
-        <tr><td>Hiace Premio 14 Seat Standard</td><td>Rp 1.300.000 - Rp 6.000.000</td></tr>
-        <tr><td>Hiace Premio 14 Seat Executive</td><td>Rp 1.500.000 - Rp 6.600.000</td></tr>
-        <tr><td>Elf 19 Seat Executive</td><td>Rp 1.300.000 - Rp 6.500.000</td></tr>
-      </table>
-      <p><i>*Harga menyesuaikan tujuan & durasi.</i></p>
-    </section>
-  </div>
+    <h2>Harga Sewa Mobil</h2>
+    <table>
+      <tr><th>Jenis Mobil</th><th>Harga / Hari</th></tr>
+      <tr><td>Hiace Commuter 14 Seat</td><td>Rp 1.100.000 - Rp 5.000.000</td></tr>
+      <tr><td>Hiace Premio 14 Seat Standard</td><td>Rp 1.300.000 - Rp 6.000.000</td></tr>
+      <tr><td>Hiace Premio 14 Seat Executive</td><td>Rp 1.500.000 - Rp 6.600.000</td></tr>
+      <tr><td>Elf 19 Seat Executive</td><td>Rp 1.300.000 - Rp 6.500.000</td></tr>
+    </table>
+    <p><i>*Harga menyesuaikan tujuan & durasi (lihat pricelist lengkap).</i></p>
 
-  <!-- SLIDE 2 (ORDER + KALENDER) -->
-  <div class="slide" id="slide2">
-    <section>
-      <h2>Form Pemesanan</h2>
-      <form onsubmit="sendWA(event)">
-        <label>Nama Lengkap</label>
-        <input id="nama" type="text" required>
-        <label>Pilih Mobil</label>
-        <select id="mobil">
-          <option value="commuter">Hiace Commuter 14 Seat</option>
-          <option value="premioStd">Hiace Premio 14 Seat Standard</option>
-          <option value="premioExec">Hiace Premio 14 Seat Executive</option>
-          <option value="elfExec">Elf 19 Seat Executive</option>
-        </select>
-        <label>Tanggal Sewa</label>
-        <input id="tanggal" type="date" required>
-        <label>Lama Sewa (Hari)</label>
-        <input id="lama" type="number" min="1" max="30" required>
-        <label>Tujuan Perjalanan</label>
-        <input id="tujuan" type="text" placeholder="Contoh: Bandung, Jogja, Bali" required>
-        <button type="submit">Pesan Sekarang</button>
-      </form>
-    </section>
+    <div class="terms">
+      <h3>Overtime</h3>
+      <ul>
+        <li>Pemakaian di atas jam 23.30 pada hari kepulangan dikenakan biaya overtime Rp 150.000/jam.</li>
+        <li>Overtime melebihi jam 3 pagi = biaya satu hari sewa berikutnya.</li>
+      </ul>
+      <h3>Down Payment & Pelunasan</h3>
+      <ul>
+        <li>DP sah jika sudah membayar 30% dari total harga.</li>
+        <li>Pelunasan maksimal H-5 sebelum keberangkatan.</li>
+      </ul>
+      <h3>Refund & Reschedule</h3>
+      <ul>
+        <li>Pembatalan maksimal H-3 sebelum keberangkatan.</li>
+        <li>Reschedule maksimal H-3 sebelum keberangkatan.</li>
+        <li>Pembatalan mendadak kena biaya admin 30%.</li>
+        <li>Pembatalan H-2 kena biaya 100%.</li>
+      </ul>
+    </div>
+  </section>
 
-    <section>
-      <h2>Jadwal Mobil Bulanan</h2>
-      <div class="calendar-header">
-        <button onclick="prevMonth()">&#8592; Sebelumnya</button>
-        <h3 id="monthYear"></h3>
-        <button onclick="nextMonth()">Berikutnya &#8594;</button>
-      </div>
-      <div class="calendar" id="calendar"></div>
-      <div class="legend">
-        <div class="legend-item"><span class="legend-color" style="background:#77dd77;"></span> Belum Ada Booking</div>
-        <div class="legend-item"><span class="legend-color" style="background:#4da6ff;"></span> Hiace Commuter</div>
-        <div class="legend-item"><span class="legend-color" style="background:#32cd32;"></span> Hiace Premio Standard</div>
-        <div class="legend-item"><span class="legend-color" style="background:#ffd633;"></span> Hiace Premio Executive</div>
-        <div class="legend-item"><span class="legend-color" style="background:#ff8533;"></span> Elf Executive</div>
-      </div>
-    </section>
-  </div>
+  <!-- ORDER -->
+  <section id="order">
+    <h2>Form Pemesanan</h2>
+    <form onsubmit="sendWA(event)">
+      <label>Nama Lengkap</label>
+      <input id="nama" type="text" required>
 
+      <label>Pilih Mobil</label>
+      <select id="mobil">
+        <option value="commuter">Hiace Commuter 14 Seat</option>
+        <option value="premioStd">Hiace Premio 14 Seat Standard</option>
+        <option value="premioExec">Hiace Premio 14 Seat Executive</option>
+        <option value="elfExec">Elf 19 Seat Executive</option>
+      </select>
+
+      <label>Tanggal Sewa</label>
+      <input id="tanggal" type="date" required>
+
+      <label>Lama Sewa (Hari)</label>
+      <input id="lama" type="number" min="1" max="30" required>
+
+      <label>Tujuan Perjalanan</label>
+      <input id="tujuan" type="text" placeholder="Contoh: Bandung, Jogja, Bali" required>
+
+      <label>Lokasi Penjemputan</label>
+      <input id="jemput" type="text" placeholder="Contoh: Bandara Soekarno Hatta, Alamat Rumah" required>
+
+      <button type="submit">Pesan Sekarang</button>
+    </form>
+  </section>
+
+  <!-- JADWAL -->
+  <section id="jadwal">
+    <h2>Jadwal Mobil Bulanan</h2>
+    <div class="calendar-header">
+      <button onclick="prevMonth()">&#8592; Sebelumnya</button>
+      <h3 id="monthYear"></h3>
+      <button onclick="nextMonth()">Berikutnya &#8594;</button>
+    </div>
+    <div class="calendar" id="calendar"></div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-color" style="background:#77dd77;"></span> Tanggal Kosong</div>
+      <div class="legend-item"><span class="legend-color" style="background:#004aad;"></span> Hiace Commuter</div>
+      <div class="legend-item"><span class="legend-color" style="background:#ff9800;"></span> Hiace Premio Std</div>
+      <div class="legend-item"><span class="legend-color" style="background:#9c27b0;"></span> Hiace Premio Exec</div>
+      <div class="legend-item"><span class="legend-color" style="background:#e91e63;"></span> Elf Executive</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p><b>Alamat:</b> KP Sarongge RT 03 RW 010, Sindang Asih, Sindang Jaya, Tangerang - Banten</p>
-    <p><b>Telp/WA:</b> 085210450728</p>
+    <p><strong>Alamat:</strong> KP Sarongge RT 03 RW 010, Desa Sindang Asih, Kecamatan Sindang Jaya, Kabupaten Tangerang, Banten</p>
+    <p><strong>Telp/WA:</strong> 085210450728</p>
     <a class="wa-button" href="https://wa.me/6285210450728" target="_blank">💬 Hubungi via WhatsApp</a>
     <p>&copy; 2025 SA TRANS Tour & Travel</p>
   </footer>
 
 <script>
-  // ==== SLIDE CONTROL ====
-  function showSlide(i) {
-    document.querySelectorAll(".slide").forEach((s, idx) => {
-      s.classList.toggle("active", idx === i);
-    });
+  function showSlide(id){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
   }
 
-  // ==== FORM TO WA ====
-  function sendWA(e){
-    e.preventDefault();
-    const nama = document.getElementById("nama").value;
-    const mobilKey = document.getElementById("mobil").value;
-    const tanggal = document.getElementById("tanggal").value;
-    const lama = document.getElementById("lama").value;
-    const tujuan = document.getElementById("tujuan").value;
-
-    const mobilNames = {
-      commuter: "Hiace Commuter 14 Seat",
-      premioStd: "Hiace Premio 14 Seat Standard",
-      premioExec: "Hiace Premio 14 Seat Executive",
-      elfExec: "Elf 19 Seat Executive"
-    };
-
-    const msg = `Halo, saya *${nama}* ingin pesan:\nMobil: ${mobilNames[mobilKey]}\nTanggal: ${tanggal}\nDurasi: ${lama} hari\nTujuan: ${tujuan}`;
-    window.open(`https://wa.me/6285210450728?text=${encodeURIComponent(msg)}`);
-
-    // Simpan booking ke kalender
-    let d = new Date(tanggal);
-    for(let i=0; i<lama; i++){
-      let dateKey = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-      if (!bookedDates[dateKey]) bookedDates[dateKey] = [];
-      bookedDates[dateKey].push({mobil: mobilKey, tujuan: tujuan});
-      d.setDate(d.getDate()+1);
-    }
-    saveBookings();
-    renderCalendar(currentDate);
-  }
-
-  // ==== KALENDER + LOCALSTORAGE ====
   const calendar = document.getElementById("calendar");
   const monthYear = document.getElementById("monthYear");
   let currentDate = new Date();
 
+  // data booking
+  let bookedDates = JSON.parse(localStorage.getItem("bookedDates") || "{}");
+
   const mobilColors = {
-    commuter: "#4da6ff",
-    premioStd: "#32cd32",
-    premioExec: "#ffd633",
-    elfExec: "#ff8533"
+    commuter: "#004aad",
+    premioStd: "#ff9800",
+    premioExec: "#9c27b0",
+    elfExec: "#e91e63"
   };
 
-  let bookedDates = JSON.parse(localStorage.getItem("bookedDates")) || {};
-
-  function saveBookings() {
-    localStorage.setItem("bookedDates", JSON.stringify(bookedDates));
-  }
-
-  function renderCalendar(date) {
-    calendar.innerHTML = "";
+  function renderCalendar(date){
+    calendar.innerHTML="";
     const year = date.getFullYear();
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
+    const lastDate = new Date(year, month+1, 0).getDate();
 
-    const monthNames = ["Januari","Februari","Maret","April","Mei","Juni",
-                        "Juli","Agustus","September","Oktober","November","Desember"];
-    monthYear.textContent = `${monthNames[month]} ${year}`;
+    const monthNames=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+    monthYear.textContent = monthNames[month]+" "+year;
 
-    // Nama hari
-    const days = ["Ming","Sen","Sel","Rab","Kam","Jum","Sab"];
+    const days=["Min","Sen","Sel","Rab","Kam","Jum","Sab"];
     days.forEach(d=>{
       const div=document.createElement("div");
       div.classList.add("day","empty");
@@ -183,60 +177,72 @@
       calendar.appendChild(div);
     });
 
-    // Kosong sebelum tanggal 1
-    for (let i=0; i<firstDay; i++){
+    for(let i=0;i<firstDay;i++){
       const div=document.createElement("div");
       div.classList.add("day","empty");
       calendar.appendChild(div);
     }
 
-    // Tanggal
-    for (let i=1; i<=lastDate; i++){
+    for(let i=1;i<=lastDate;i++){
       const div=document.createElement("div");
       div.classList.add("day");
-      div.innerHTML = `<div>${i}</div>`;
-
-      const dateKey = `${year}-${month+1}-${i}`;
-      if (bookedDates[dateKey]) {
-        bookedDates[dateKey].forEach(item => {
-          const tag = document.createElement("span");
-          tag.classList.add("tag");
-          tag.style.background = mobilColors[item.mobil];
-          div.appendChild(tag);
-
-          if (item.tujuan) {
-            const p = document.createElement("span");
-            p.classList.add("purpose");
-            p.textContent = item.tujuan;
-            div.appendChild(p);
-          }
+      div.textContent=i;
+      const dateKey=`${year}-${month+1}-${i}`;
+      if(bookedDates[dateKey]){
+        bookedDates[dateKey].forEach(item=>{
+          div.style.background=mobilColors[item.mobil];
+          div.style.color="white";
+          const tujuan=document.createElement("span");
+          tujuan.classList.add("purpose");
+          tujuan.textContent="Tujuan: "+item.tujuan;
+          div.appendChild(tujuan);
+          const jemput=document.createElement("span");
+          jemput.classList.add("purpose");
+          jemput.textContent="Jemput: "+item.jemput;
+          div.appendChild(jemput);
         });
       } else {
-        div.style.background="#77dd77"; // hijau jika kosong
+        div.style.background="#77dd77";
       }
-
-      // Klik manual admin
-      div.addEventListener("click", () => {
-        if (dateKey) {
-          let mobil = prompt("Pilih mobil (commuter, premioStd, premioExec, elfExec) atau kosongkan untuk hapus:", "");
-          if (mobil) {
-            let tujuan = prompt("Masukkan tujuan perjalanan:", "");
-            if (!bookedDates[dateKey]) bookedDates[dateKey] = [];
-            bookedDates[dateKey].push({mobil: mobil, tujuan: tujuan});
-          } else {
-            delete bookedDates[dateKey];
-          }
-          saveBookings();
-          renderCalendar(currentDate);
-        }
-      });
-
       calendar.appendChild(div);
     }
   }
 
-  function prevMonth(){ currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(currentDate);}
-  function nextMonth(){ currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(currentDate);}
+  function prevMonth(){currentDate.setMonth(currentDate.getMonth()-1);renderCalendar(currentDate);}
+  function nextMonth(){currentDate.setMonth(currentDate.getMonth()+1);renderCalendar(currentDate);}
+
+  function saveBookings(){localStorage.setItem("bookedDates",JSON.stringify(bookedDates));}
+
+  function sendWA(e){
+    e.preventDefault();
+    const nama=document.getElementById("nama").value;
+    const mobilKey=document.getElementById("mobil").value;
+    const tanggal=document.getElementById("tanggal").value;
+    const lama=document.getElementById("lama").value;
+    const tujuan=document.getElementById("tujuan").value;
+    const jemput=document.getElementById("jemput").value;
+
+    const mobilNames={
+      commuter:"Hiace Commuter 14 Seat",
+      premioStd:"Hiace Premio 14 Seat Standard",
+      premioExec:"Hiace Premio 14 Seat Executive",
+      elfExec:"Elf 19 Seat Executive"
+    };
+
+    const msg=`Halo, saya *${nama}* ingin pesan:\nMobil: ${mobilNames[mobilKey]}\nTanggal: ${tanggal}\nDurasi: ${lama} hari\nTujuan: ${tujuan}\nPenjemputan: ${jemput}`;
+    window.open(`https://wa.me/6285210450728?text=${encodeURIComponent(msg)}`);
+
+    let d=new Date(tanggal);
+    for(let i=0;i<lama;i++){
+      let dateKey=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+      if(!bookedDates[dateKey]) bookedDates[dateKey]=[];
+      bookedDates[dateKey].push({mobil:mobilKey, tujuan:tujuan, jemput:jemput});
+      d.setDate(d.getDate()+1);
+    }
+    saveBookings();
+    renderCalendar(currentDate);
+    showSlide('jadwal');
+  }
 
   renderCalendar(currentDate);
 </script>
