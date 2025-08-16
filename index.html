@@ -14,7 +14,8 @@
     button, input, select { padding:8px; margin:5px 0; width:100%;}
     button { background:#004aad; color:white; border:none; cursor:pointer;}
     .calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-top:20px;}
-    .day { padding:8px; border-radius:4px; text-align:center; cursor:pointer; min-height:60px; font-size:12px; position:relative;}
+    .day { padding:8px; border-radius:4px; text-align:center; cursor:pointer; min-height:70px; font-size:12px; position:relative;}
+    .day .purpose { font-size:10px; margin-top:2px; display:block; word-wrap:break-word; }
     .empty { background:#eee; cursor:default;}
     .calendar-header { display:flex; justify-content:space-between; align-items:center; margin:10px 0;}
     .legend { display:flex; gap:20px; margin-top:10px; flex-wrap:wrap;}
@@ -74,6 +75,8 @@
         <input id="tanggal" type="date" required>
         <label>Lama Sewa (Hari)</label>
         <input id="lama" type="number" min="1" max="30" required>
+        <label>Tujuan Perjalanan</label>
+        <input id="tujuan" type="text" placeholder="Contoh: Bandung, Jogja, Bali" required>
         <button type="submit">Pesan Sekarang</button>
       </form>
     </section>
@@ -118,6 +121,7 @@
     const mobilKey = document.getElementById("mobil").value;
     const tanggal = document.getElementById("tanggal").value;
     const lama = document.getElementById("lama").value;
+    const tujuan = document.getElementById("tujuan").value;
 
     const mobilNames = {
       commuter: "Hiace Commuter 14 Seat",
@@ -126,7 +130,7 @@
       elfExec: "Elf 19 Seat Executive"
     };
 
-    const msg = `Halo, saya *${nama}* ingin pesan:\nMobil: ${mobilNames[mobilKey]}\nTanggal: ${tanggal}\nDurasi: ${lama} hari.`;
+    const msg = `Halo, saya *${nama}* ingin pesan:\nMobil: ${mobilNames[mobilKey]}\nTanggal: ${tanggal}\nDurasi: ${lama} hari\nTujuan: ${tujuan}`;
     window.open(`https://wa.me/6285210450728?text=${encodeURIComponent(msg)}`);
 
     // Simpan booking ke kalender
@@ -134,9 +138,7 @@
     for(let i=0; i<lama; i++){
       let dateKey = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
       if (!bookedDates[dateKey]) bookedDates[dateKey] = [];
-      if (!bookedDates[dateKey].includes(mobilKey)) {
-        bookedDates[dateKey].push(mobilKey);
-      }
+      bookedDates[dateKey].push({mobil: mobilKey, tujuan: tujuan});
       d.setDate(d.getDate()+1);
     }
     saveBookings();
@@ -196,11 +198,18 @@
 
       const dateKey = `${year}-${month+1}-${i}`;
       if (bookedDates[dateKey]) {
-        bookedDates[dateKey].forEach(mobilKey => {
+        bookedDates[dateKey].forEach(item => {
           const tag = document.createElement("span");
           tag.classList.add("tag");
-          tag.style.background = mobilColors[mobilKey];
+          tag.style.background = mobilColors[item.mobil];
           div.appendChild(tag);
+
+          if (item.tujuan) {
+            const p = document.createElement("span");
+            p.classList.add("purpose");
+            p.textContent = item.tujuan;
+            div.appendChild(p);
+          }
         });
       } else {
         div.style.background="#77dd77"; // hijau jika kosong
@@ -209,12 +218,13 @@
       // Klik manual admin
       div.addEventListener("click", () => {
         if (dateKey) {
-          let choice = prompt("Pilih mobil (commuter, premioStd, premioExec, elfExec) atau kosongkan untuk hapus:", "");
-          if (choice) {
+          let mobil = prompt("Pilih mobil (commuter, premioStd, premioExec, elfExec) atau kosongkan untuk hapus:", "");
+          if (mobil) {
+            let tujuan = prompt("Masukkan tujuan perjalanan:", "");
             if (!bookedDates[dateKey]) bookedDates[dateKey] = [];
-            if (!bookedDates[dateKey].includes(choice)) bookedDates[dateKey].push(choice);
+            bookedDates[dateKey].push({mobil: mobil, tujuan: tujuan});
           } else {
-            delete bookedDates[dateKey]; // hapus semua booking di hari tsb
+            delete bookedDates[dateKey];
           }
           saveBookings();
           renderCalendar(currentDate);
